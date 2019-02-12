@@ -1,0 +1,36 @@
+<div class="article_list">
+    {{each list}}
+    <section class="article_item">
+        <h3><a href="{{$value.url}}">{{$value.title}}</a></h3>
+        <div class="preview md_html">
+            {{@$value.preview}}
+        </div>
+        <div class="article_item_footer">
+            <div class="read_btn">
+                <a href="{{$value.url}}">Read</a>
+            </div>
+        </div>
+    </section>
+    {{/each}}
+    <div class="page_box">
+    <div class="page_pre">
+        <a class="page_pre_item" class="" href="/articles/1.html">FIRST</a>
+        <a class="page_pre_item" href="/articles/{{pageIndex > 1 ? pageIndex - 1 : 1}}.html">
+            <i class="iconfont icon-previous"></i>
+        </a>
+    </div>
+    <div class="page_num">
+        {{each pageList}}
+            <a href="/articles/{{$value}}.html" class="page_num_item {{$value === pageIndex ? 'actived': ''}}">
+                {{$value}}
+            </a>
+        {{/each}}
+    </div>
+    <div class="page_next">
+        <a class="page_next_item" href="/articles/{{pageIndex < pageTotal ? pageIndex + 1 : pageTotal}}.html">
+            <i class="iconfont icon-next"></i>
+        </a>
+        <a class="page_next_item" href="/articles/{{pageTotal}}.html">LAST</a>
+    </div>
+    </div>
+</div>

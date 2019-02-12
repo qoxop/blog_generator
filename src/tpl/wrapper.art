@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="{{keywords}}">
+    <title>qoxop | {{title}}</title>
+    <link rel="stylesheet" href="/assets/common.css">
+    <link rel="stylesheet" href="/assets/{{pageType}}.css">
+    <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  
+    <script async src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.1/highlight.min.js"></script>
+    {{if isDev }} 
+      <script src="/assets/hot_reload.js"></script>
+    {{/if}}
+</head>
+<body>
+    <div id="app">
+        <header>
+          <div class="content_box header_inner">
+            <div class="logo">
+              <div class="logoImg">
+                <img src="/assets/icon.png" alt="">
+              </div>
+              <div class="logoText">
+                jiw
+              </div>
+            </div>
+            <nav class="navigator">
+              <ul>
+                {{each menus}}
+                <li class="{{$value.className}}">
+                    <a href="{{$value.url}}">
+                        {{$value.text}}
+                    </a>
+                </li>
+                {{/each}}
+              </ul>
+            </nav>
+          </div>
+        </header>
+        <div id="main">
+            <slot></slot>
+        </div>
+        <footer></footer>
+      </div>
+</body>
+</html>

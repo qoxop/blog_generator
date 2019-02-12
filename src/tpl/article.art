@@ -1,0 +1,22 @@
+<article class="content_box">
+    <div class="article md_html_article">
+        <h1>
+            {{title}}
+        </h1>
+        <div class="update_time">
+            <span>
+                更新时间：{{modifyAt}}
+            </span>
+        </div>
+        <div class="md_essay">
+            {{@ html }}
+        </div>
+        <div class="md_essay_tags">
+            {{each tags}}
+                <div>
+                    <span>{{$value}}</span>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</article>
