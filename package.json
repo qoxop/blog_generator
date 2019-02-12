@@ -3,9 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "writing": "",
+    "dev": "",
+    "build": "",
+    "publish": "" 
+  },
   "dependencies": {
     "art-template": "^4.13.2",
     "dayjs": "^1.8.0",
+    "gulp": "^4.0.0",
     "koa": "^2.7.0",
     "koa-route": "^3.2.0",
     "koa-static": "^5.0.0",
@@ -17,7 +24,7 @@
     "markdown-it-highlightjs": "^3.0.0",
     "markdown-it-table-of-contents": "^0.4.3",
     "markdown-it-task-lists": "^2.1.1",
-    "markdown-it-toc-and-anchor": "^4.2.0",
+    "markdown-it-toc-and-anchor": "^4.2.0"
   },
   "devDependencies": {
     "webpack": "^4.29.0",
