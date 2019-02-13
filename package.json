@@ -7,7 +7,8 @@
     "writing": "",
     "dev": "",
     "build": "",
-    "publish": "" 
+    "publish": "",
+    "test":"gulp"
   },
   "dependencies": {
     "art-template": "^4.13.2",
@@ -24,7 +25,8 @@
     "markdown-it-highlightjs": "^3.0.0",
     "markdown-it-table-of-contents": "^0.4.3",
     "markdown-it-task-lists": "^2.1.1",
-    "markdown-it-toc-and-anchor": "^4.2.0"
+    "markdown-it-toc-and-anchor": "^4.2.0",
+    "through2": "^3.0.0"
   },
   "devDependencies": {
     "webpack": "^4.29.0",
