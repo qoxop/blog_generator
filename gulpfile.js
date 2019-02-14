@@ -2,8 +2,8 @@ const gulp = require('gulp');
 const through = require('through2');
 const fs = require('fs')
 const markdownIt = require('markdown-it')('commonmark')
-const {join} = require('path')
-const posixPath = require('path').posix
+const posixPath = require('path').posix;
+const {aboutPage, articlePage, ideasPage, categoryPage, articleListPage, linksPage} = require('./src/tpl/index')
 
 let parser = markdownIt
     .use(require('markdown-it-task-lists'), {enable: true, label: true, labelAfter: true})
