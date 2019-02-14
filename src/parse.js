@@ -9,18 +9,21 @@ let parser = markdownIt
     .use(require("markdown-it-anchor"))
     .use(require('markdown-it-table-of-contents'), {includeLevel: [3, 4]});
 
-//构建文件目录树
+/**
+ * 生成与目录结构一致的树状结构
+ * @param {string} inputPath 输入路径
+ */
 function createFilesTree(inputPath) {
     const filesTree = {}
     try {
         fs.accessSync(inputPath, fs.constants.R_OK | fs.constants.W_OK);
-        const files = fs.readdirSync(inputPath, { withFileTypes: true}) // 使用同步api, 异步递归有点蛋疼
+        const files = fs.readdirSync(inputPath, { withFileTypes: true})
         files.forEach(dirent => {
             if (!dirent.name.match(/^\./)) { // 忽视 . 开头的文件或文件夹
                 if (dirent.isFile()) {
                     filesTree[dirent.name] = 1
                 } else if (dirent.isDirectory()) {
-                    filesTree[dirent.name] = createFilesTree(`${inputPath}/${dirent.name}`)
+                    filesTree[dirent.name] = createFilesTree(join(inputPath, dirent.name))
                 }
             }
         })
@@ -140,15 +143,3 @@ function generateMeta(inputPath, outputPath, config = {}) {
 }
 
 module.exports = generateMeta
-
-// previewCutoff = /\<\!--\s*more\s* --\>/,
-// 目录名映射 .json 包括链接修改
-// vue-ssr渲染单文件，打入mdInfo以及，renderType，生成由vue生产的html文件
-
-
-
-// toc anchor
-// https://highlightjs.org/
-// markdown-it-container 内容
-// markdown-it-checkbox
-// markdown-it-task-lists todo list  
