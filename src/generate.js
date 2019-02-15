@@ -85,7 +85,6 @@ const generateMap = {
         const keywords = list.reduce((keywords, cur) => {
             return keywords.concat(cur.keywords || [])
         }, []).join(',') + ',首页';
-       
         const data = mergeCommon({
             list, title: '首页', keywords, 
             menus: generateMenus('home'),
