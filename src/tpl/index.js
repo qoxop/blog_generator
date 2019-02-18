@@ -23,11 +23,11 @@ const wrapperAsideTpl = () => fs.readFileSync(absPath('./wrapperAside.art'), {en
 
 const aboutPage = (data = {}) => getTpl('about').wrapper(wrapperAsideTpl()).wrapper(wrapperTpl()).render(data);
 const articlePage = (data = {}) => getTpl('article').wrapper(wrapperTpl()).render(data);
-const ideasPage = (data = {}) => getTpl('ideas').wrapper(wrapperTpl()).render(data);
+const tagsPage = (data = {}) => getTpl('tags').wrapper(wrapperAsideTpl()).wrapper(wrapperTpl()).render(data);
 const categoryPage = (data = {}) => getTpl('category').wrapper(wrapperAsideTpl()).wrapper(wrapperTpl()).render(data)
 const articleListPage = (data = {}) => getTpl('articleList').wrapper(wrapperAsideTpl()).wrapper(wrapperTpl()).render(data);
 const linksPage = (data = {}) => getTpl('links').wrapper(wrapperAsideTpl()).wrapper(wrapperTpl()).render(data);
 
 module.exports = {
-    aboutPage, articlePage, ideasPage, categoryPage, articleListPage, linksPage
+    aboutPage, articlePage, tagsPage, categoryPage, articleListPage, linksPage
 }

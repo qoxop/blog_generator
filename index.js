@@ -3,27 +3,8 @@ const path = require('path')
 const route = require('koa-route')
 const static = require('koa-static')
 const websockify = require('koa-websocket')
-const { generateHtmlFiles, copyDirDeep } = require('./src/generate')
-const hotReload = require('./src/hotReloadServe')
 
 process.env.dev = true;
-
-const pathInfo = {
-  inputPath: 'C:/work/notes',
-  outputPath: path.join(__dirname, './site/'),
-  srcPath: path.join(__dirname, './src/'),
-  assetsPath: path.join(__dirname, './assets/'),
-  baseUrl: ''
-}
-
-const reloadHanders = [];
-
-hotReload(
-  pathInfo,
-  generateHtmlFiles(pathInfo),
-  copyDirDeep(pathInfo.assetsPath, path.join(pathInfo.outputPath, './assets/')),
-  reloadHanders
-)
 
 const app = websockify(new Koa())
 

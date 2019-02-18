@@ -1,14 +1,13 @@
 {
-  "name": "vueSsr",
+  "name": "blog_generator",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "writing": "",
-    "dev": "",
-    "build": "",
-    "publish": "",
-    "test":"gulp"
+    "writing": "gulp writing",
+    "dev": "gulp dev",
+    "build": "gulp build",
+    "github": "gulp publish"
   },
   "dependencies": {
     "art-template": "^4.13.2",
@@ -26,6 +25,7 @@
     "markdown-it-table-of-contents": "^0.4.3",
     "markdown-it-task-lists": "^2.1.1",
     "markdown-it-toc-and-anchor": "^4.2.0",
+    "opn": "^5.4.0",
     "through2": "^3.0.0"
   },
   "devDependencies": {
