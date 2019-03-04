@@ -1,8 +1,8 @@
 <div class="article_list">
     {{each list}}
     <section class="article_item">
-        <h3><a href="{{$value.url}}">{{$value.title}}</a></h3>
-        <div class="preview md_html">
+        <h2><a href="{{$value.url}}">{{$value.title}}</a></h2>
+        <div class="preview">
             {{@$value.preview}}
         </div>
         <div class="article_item_footer">

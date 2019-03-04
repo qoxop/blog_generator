@@ -3,7 +3,7 @@
         <!-- 这里存放主要内容 -->
         <slot></slot>
     </div>
-    <aside>
+    <aside class="aside-box">
         <div class="profile_banner"></div>
         <div class="profile_logo">
         <img src="/assets/logo.png" alt="">

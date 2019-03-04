@@ -1,21 +1,15 @@
-h1 {
-    line-height: 1.5em;
-}
 
-h2, h3, h4, h5 {
-  margin: 2em 0 1em; }
 
-ul, ol {
-    padding: 0 0 0 30px;
-}
+
 article.content_box {
+    overflow: hidden;
     padding-top: 15px;
     padding-bottom: 30px;
 }
 
 .md_html_article {
     background-color: #fff;
-    width: 1000px;
+    width: 960px;
     box-sizing: border-box;
     padding: 10px 24px;
     position: relative;
@@ -28,9 +22,17 @@ article.content_box {
     padding-bottom: 10px;
 }
 .md_html_article h1 {
-    font-size: 26px;
+    font-size: 27px;
     color: chocolate;
-    margin: 14px 0 14px 0px;
+    line-height: 1.5em;
+    margin: 24px 0 20px 0px;
+}
+.md_html_article ul, ol {
+    padding: 0 0 0 30px;
+}
+
+.md_html_article h2, .md_html_article h3, .md_html_article h4, .md_html_article h5 {
+    margin: 2em 0 1em; 
 }
 
 .md_essay > p {
@@ -66,6 +68,21 @@ article.content_box {
     cursor: pointer;
 }
 
+.table-of-contents {
+    position: absolute;
+    width: 310px !important;
+    border-radius: 4px;
+    top: 0px;
+    left: 955px;
+    background-color: #fff;
+    z-index: 1;
+    transition: opacity 1.5s;
+    min-height: 85vh;
+    padding: 8px;
+}
+.table-of-contents ul , .table-of-contents li {
+    list-style: none !important;
+}
 
 :root {
     --monospace: Courier, monospace;
@@ -73,7 +90,6 @@ article.content_box {
     --text-color: #303030;
     --active-file-bg-color: #E6E8EA;
     --side-bar-bg-color: #f9f9f9;
-    /*--text-color: #223c61;*/
 }
 
 
@@ -154,14 +170,13 @@ html {
 }
 
 #write {
-    width: 100%;
     background: #fff;
     margin: 0px auto 20px;
     border-radius: 7px;
     border: 1px solid #eee;
     min-height: calc(100vh - 6em);
     margin-bottom: 60px;
-    padding: 10px 60px;
+    padding: 10px 40px;
     line-height: 1.6em;
 }
 
@@ -214,7 +229,6 @@ blockquote {
     margin: 2em -60px;
     border-bottom: 1px dotted #CCC;
     border-top: 1px dotted #CCC;
-    /*background: #f4f4f4;*/
     width: calc(100% + 120px);
     border-radius: 0;
     padding-left: 60px;
@@ -239,13 +253,6 @@ blockquote {
     font-size: 14px;
     border-radius: 0;
     color: var(--text-color);
-
-    /*margin-top: -24px;
-    margin-bottom: 64px;
-    padding: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    font-size: 14px;*/
 }
 
 .md-toc:focus .md-toc-content {
