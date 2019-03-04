@@ -31,7 +31,7 @@
             <nav class="navigator">
               <ul>
                 {{each menus}}
-                <li class="{{$value.className}}">
+                <li class="{{$value.className}}" onclick="exec('linkTo', '{{$value.url}}')">
                     <a href="{{$value.url}}">
                         {{$value.text}}
                     </a>

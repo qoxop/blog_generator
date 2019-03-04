@@ -15,7 +15,7 @@
             bala~~~ blablabal~~~
         </div>
         <div class="profile_info">
-        <div>
+        <div onclick="exec('gotoGithub')">
             <div class="iconbox"><em class="iconfont icon-github"></em></div>
             <div class="icontext">github</div>
         </div>

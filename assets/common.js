@@ -14,6 +14,12 @@ window.exec = (function() {
         },
         'goback': function() {
             window.history.back()
+        },
+        'gotoGithub': function() {
+            window.location.href = 'https://github.com/qoxop'
+        },
+        'linkTo': function (url) {
+            window.location.href = window.location.origin + url
         }
     }
     return function(command, opts) {
