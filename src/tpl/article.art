@@ -8,7 +8,7 @@
                 更新时间：{{modifyAt}}
             </span>
         </div>
-        <div class="md_essay">
+        <div id="write" class="md_essay">
             {{@ html }}
         </div>
         <div class="md_essay_tags">

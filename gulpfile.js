@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const {generateWebsite} = require('./generateWebsite.js')
+const {generateWebsite, clearArticles} = require('./generateWebsite.js')
 const {parseMarkdown} = require('./parseMarkdown')
 const {notePath, githubPagePath} = require('./meta.js')
 const Koa = require('koa')
@@ -56,7 +56,14 @@ function setDev(cb) {
     cb();
 }
 
-gulp.task('build', gulp.series(parseMarkdown, generateWebsite))
+gulp.task('build', gulp.series(
+    function(cb) {
+        clearArticles();
+        cb();
+    },
+    parseMarkdown,
+    generateWebsite
+))
 
 // 开发
 gulp.task('dev', gulp.series(setDev, 'build', function (cb) {

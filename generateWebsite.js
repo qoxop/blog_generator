@@ -118,5 +118,6 @@ const generateWebsite = gulp.parallel(generateArticleList, generateCategorys, ge
 
 module.exports = {
     generateWebsite,
-    addArticles: DataController.addArticles
+    addArticles: DataController.addArticles,
+    clearArticles: DataController.clearArticles
 }

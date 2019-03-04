@@ -33,12 +33,19 @@
 }
   
 /* css init */
-body {
-    margin: 0;
-    padding: 0;
-    background-color: lightgreen;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+html {
+    font-size: 16px;
 }
+
+body {
+    background: #f9f9f9;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    line-height: 19px;
+    padding: 0;
+    margin: 0;
+}
+
 ul, li, div, header, nav, h1, h2, h3, h4, h5, h6 {
     padding: 0;
     margin: 0;
@@ -69,14 +76,16 @@ a {
 }
 
   /* 头部样式 var headerTop = 60px; */
-  #app {
-    height: 100vh;
-    background-color: lightgreen;
-    /* background-image: url(./banner.jpg); */
+#app {
+    min-height: 100%;
+    min-height: 100vh;
+    background-color: #fff;
+    background-image: url(./banner.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
-  }
-  #app > header {
+    background-attachment:fixed;
+}
+#app > header {
     height: 60px;
     width: 100%;
     position: fixed;
@@ -84,30 +93,36 @@ a {
     background-color: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid rgba(0,0,0,.25);
     z-index: 999;
-  
-  }
-  #app>header .header_inner { /* flex布局 */
+    transition: top 0.5s ease;
+}
+#app > header.hide {
+    top: -64px;
+}
+#app > header h1 {
+    display: none;
+}
+#app>header .header_inner { /* flex布局 */
     display: flex;
     flex-flow: nowrap row;
     overflow: visible;
-  }
-  #app>header .logo {
+}
+#app>header .logo {
     width: 130px;
     height: 100%;
     display: flex;
     flex-flow: nowrap row;
     cursor: pointer;
-  }
-  #app>header .logoImg{
+}
+#app>header .logoImg{
     height: 60px;
     width: 60px;
     overflow: hidden;
-  }
-  #app>header .logoImg img {
+}
+#app>header .logoImg img {
     width: 100%;
     height: 100%;
-  }
-  #app>header .logoText {
+}
+#app>header .logoText {
     flex: 1;
     height: 100%;
     line-height: 48px;
@@ -115,19 +130,19 @@ a {
     font-size: 30px;
     font-weight: 600;
     color: #000;
-  }
-  #app>header .navigator {
+}
+#app>header .navigator {
     flex: 1;
     height: 100%;
     padding-left: 20px;
-  }
-  #app>header .navigator ul{
+}
+#app>header .navigator ul{
     list-style: none;
     padding: 0px;
     margin: 0px;
     height: 100%;
-  }
-  #app>header .navigator ul li {
+}
+#app>header .navigator ul li {
     display: inline-block;
     height: 60px;
     box-sizing: border-box;
@@ -136,35 +151,32 @@ a {
     font-weight: 500;
     color: #555;
     cursor: pointer;
-  }
-  #app>header .navigator ul li:hover,  #app>header .navigator ul li.actived {
+}
+#app>header .navigator ul li:hover,  #app>header .navigator ul li.actived {
     font-size: bolder;
     height: 62px;
     color: chocolate;
     border-bottom: 4px solid chocolate;
-  }
+}
 
   /* 中间内容区 */
-  #main{
+#main{
     width: 100%;
-    height: 100%;
     box-sizing: border-box;
     padding-top: 60px;
     padding-bottom: 10px;
-   
-  }
+}
 
   /* 底部内容 */
-  footer {
+footer {
     height: 10px;
     width: 100%;
     background: #0575E6;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    position: fixed;
     bottom: 0;
     left: 0;
- }
+}
 
 #left_content {
     width: 900px;
@@ -172,13 +184,14 @@ a {
     position: relative;
     z-index: 2;
 }
+
 .scrollbox {
     box-sizing: border-box;
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
-.scrollbox > * {
+.scrollbox > div,  .scrollbox > article, .scrollbox > section{
     box-sizing: border-box;
     padding-right: 10%;
     width: 110%;
@@ -187,6 +200,31 @@ a {
     overflow-x: hidden
 }
 
+.shortcut-tools {
+    position: fixed;
+    width: 100px;
+    height: 60px;
+    color: #fff;
+    bottom: 110px;
+    right: 10px;
+    z-index: 9999;
+}
+.shortcut-tools > div {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    list-style: 1.6;
+    background-color:rgba(222, 222, 222, 0.3);
+    cursor: pointer;
+}
+.shortcut-tools > div:hover {
+    font-weight: bolder;
+    background-color: chocolate;
+}
+.gotoTopBtn {
+
+}
 /* 右侧内容 */
 aside {
     position: absolute;

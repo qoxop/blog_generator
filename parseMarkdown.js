@@ -107,7 +107,7 @@ const generateArticlePage = function() {
 }
 
 function parseMarkdown() {
-    return gulp.src(`${notePath}/**/*.*`)
+    return gulp.src([`${notePath}/**/*.*`, `!${notePath}/ignore/**/*.*`])
     .pipe(parserPlugin(amendFile))
     .pipe(parserPlugin(addTags))
     .pipe(parserPlugin(addKeywords))
