@@ -1,31 +1,29 @@
 .article_list .article_item {
     box-sizing: border-box;
-    margin-top: 20px;
+    margin-top: 2rem;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 6px 0 0 0;
     overflow: hidden;
   }
   .article_item > h2 {
-    padding-left: 24px;
-    line-height: 1.4em;
-    margin: 1.2em 0.4em .4em 0.0em;
+    line-height: 1.8em;
+    margin: 1em 1em .4em 0.6em;
+    border-bottom: 3px solid chocolate;
   }
   .article_item > h2 > a {
     display: inline-block;
     text-decoration: unset;
     color: chocolate;
+    padding-left: 0.4em 
   }
-  .article_item a:hover {
-    padding-bottom: 3px;
-    border-bottom: 3px solid chocolate;
-  }
+  
   .preview {
-      padding: 0 26px 0 26px;
+      padding: 0 2.6rem 0 2.6rem;
       min-height: 60px;
       max-height: 650px;
       overflow: hidden;
       position: relative;
-      padding-bottom: 15px;
+      padding-bottom: 1.5rem;
   }
   .preview:after {
     content: ' ';
