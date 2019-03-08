@@ -35,6 +35,11 @@
 /* css init */
 html {
     font-size: 10px;
+    --headerHeight: 50px;
+    --headerHeight2: 52px;
+    --headerHide: -64px;
+    --deepBlack: #333;
+    --shallowBlack: #999;
 }
 
 body {
@@ -71,7 +76,7 @@ a {
     background-attachment:fixed;
 }
 #app > header {
-    height: 60px;
+    height: var(--headerHeight);
     width: 100%;
     position: fixed;
     top: 0; left: 0;
@@ -81,7 +86,7 @@ a {
     transition: top 0.5s ease;
 }
 #app > header.hide {
-    top: -64px;
+    top: var(--headerHide);
 }
 #app > header h1 {
     display: none;
@@ -92,15 +97,15 @@ a {
     overflow: visible;
 }
 #app>header .logo {
-    width: 130px;
+    width: 13rem;
     height: 100%;
     display: flex;
     flex-flow: nowrap row;
     cursor: pointer;
 }
 #app>header .logoImg{
-    height: 60px;
-    width: 60px;
+    height: var(--headerHeight);
+    width: var(--headerHeight);
     overflow: hidden;
 }
 #app>header .logoImg img {
@@ -128,19 +133,25 @@ a {
     height: 100%;
 }
 #app>header .navigator ul li {
+    box-sizing: content-box;
     display: inline-block;
-    height: 60px;
+    height: var(--headerHeight);
     box-sizing: border-box;
-    padding: 20px 13px;
-    font-size: 18px;
+    padding: 0px 1.33rem;
+    font-size: 1.6rem;
     font-weight: 500;
     color: #555;
     cursor: pointer;
 }
+#app>header .navigator ul li > a{
+    display: inline-block;
+    height: 100%;
+    line-height: var(--headerHeight);
+}
 #app>header .navigator ul li:hover,  #app>header .navigator ul li.actived {
-    font-size: bolder;
-    height: 62px;
+    font-weight: bolder;
     color: chocolate;
+    height: var(--headerHeight2);
     border-bottom: 4px solid chocolate;
 }
 

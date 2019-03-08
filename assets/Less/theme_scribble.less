@@ -1,0 +1,137 @@
+/*通用样式*/
+@themeColor: chocolate;
+html {
+    font-size: 10px;
+    --themeColor: chocolate;
+}
+body {
+    background: #f9f9f9;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    line-height: 19px;
+    padding: 0;
+    margin: 0;
+    background: url(scribble/light_wool.png);
+    background-color: rgba(255, 255, 255, 0);
+    background-repeat: repeat;
+    font-size: 16px;
+}
+
+/*md文章 正文*/
+#paper {
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    margin: 40px auto 20px auto;
+    border-radius: 7px;
+    border: 1px solid #eee;
+    min-height: calc(100vh - 6em);
+    margin-bottom: 80px;
+    padding: 40px;
+    line-height: 1.6em;
+    @media screen and(max-width: 450px) { // 小屏幕
+        margin: 0px;
+        border: none;
+        padding: 10px;
+    }
+    h2 {
+        text-align: left;
+        text-indent: 0.6em;
+        line-height: 1.5em;
+        color: @themeColor;
+    }
+    
+    h2, h3, h4, h5 {
+        margin: 2em 0 1em;
+    }
+    ul, ol {
+        padding: 0 0 0 30px;
+    }
+    blockquote {
+        padding: 0 1em;
+        margin: 14px 0;
+        border: 2px dashed #d0dfda;
+        border-radius: 5px;
+        color: #606060;
+        background: #f9f9f9;
+        -webkit-transition: all, 0.3s;
+        -moz-transition: all, 0.3s;
+        -ms-transition: all, 0.3s;
+        -o-transition: all, 0.3s;
+        transition: all, 0.3s;
+        font-style: normal !important;
+        &>:first-child {
+            margin-top: 1em;
+        }
+        &>:last-child {
+            margin-bottom: inherit;
+        }
+    }
+    
+    header {
+        color: #333;
+    }
+    pre {
+        word-wrap: break-word;
+        background: #f8f8f8;
+        padding: 1em;
+        border-radius: 5px;
+        width: 100%;
+        line-height: 1.2em;
+    }
+    code {
+        background: #f8f8f8;
+        padding: 0.05rem;
+        font-size: 0.9rem;
+        border-radius: 3px;
+        color: #009688;
+        color: #8a0004;;
+    }
+    p {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    a {
+        text-decoration: none;
+        color: #269;
+        line-height: 1.4em;
+        display: inline-block;
+        vertical-align: baseline;
+        zoom: 1;
+        *display: inline;
+        *vertical-align: auto;
+        -webkit-transition: color 0.3s;
+        -moz-transition: color 0.3s;
+        -ms-transition: color 0.3s;
+        -o-transition: color 0.3s;
+        transition: color 0.3s;
+        &:hover {
+            color: #1d5884;
+            background-image: url(scribble/line.png);
+            background-repeat: repeat-x;
+            background-position: left bottom; 
+        }
+    }
+    &> hr {
+        margin: 2em -60px;
+        border: 0;
+        border-bottom: 1px dotted #CCC;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid #CCCACC;
+        th {
+            padding:10px 15px;
+            border-right:1px solid #CCCACC;
+            background:#E9E7E9;
+            text-shadow: 1px 1px 1px #f3f3f3;
+            font-weight: inherit;
+        }
+        td{
+            padding:10px;
+            border-right:1px solid #CCCACC;
+            border-top:1px solid #CCCACC;
+        }
+    }
+}
