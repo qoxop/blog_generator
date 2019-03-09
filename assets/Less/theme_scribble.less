@@ -1,5 +1,10 @@
 /*通用样式*/
 @themeColor: chocolate;
+@headerHeight: 60px;
+@baseColor: #efefef;
+@deepBlack: #333;
+@shallowBlack: #999;
+
 html {
     font-size: 10px;
     --themeColor: chocolate;
@@ -15,6 +20,93 @@ body {
     background-color: rgba(255, 255, 255, 0);
     background-repeat: repeat;
     font-size: 16px;
+}
+
+// 水平菜单 nav > ul > li > a
+nav.horizontalMenu {
+    height: 100%;
+    box-sizing: border-box;
+    ul {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+        height: 100%;
+    }
+    li {
+        box-sizing: content-box;
+        display: inline-block;
+        height: @headerHeight;
+        box-sizing: border-box;
+        padding: 0px 1.33rem;
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: #555;
+        cursor: pointer;
+        & > a{
+            display: inline-block;
+            height: 100%;
+            line-height: @headerHeight;
+        }
+        &:hover, &.actived {
+            font-weight: bolder;
+            color: @themeColor;
+            height:  calc(100% + 3px);
+            border-bottom: 3px solid @themeColor;
+        }
+    }
+}
+
+// 快捷工具框
+.shortcut-tools {
+    position: fixed;
+    width: 100px;
+    height: 60px;
+    color: #fff;
+    bottom: 110px;
+    right: 10px;
+    z-index: 9999;
+    &> div {
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        border-radius: 4px;
+        list-style: 1.6;
+        background-color:rgba(222, 222, 222, 0.3);
+        cursor: pointer;
+        &:hover {
+            font-weight: bolder;
+            background-color: @themeColor;
+        }
+    }
+}
+
+// 头部的logo header-logo > imgbox > img , header-logo > textbox
+div.header-logo {
+    height: @headerHeight;
+    width: 13rem;
+    text-align: right;
+    cursor: pointer;
+    .imgbox {
+        display: inline-block;
+        height: @headerHeight;
+        width: @headerHeight;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .textbox {
+        display: inline-block;
+        height: @headerHeight;
+        line-height: @headerHeight;
+        font-size: 30px;
+        font-weight: 600;
+        color: @deepBlack;
+        padding: 0;
+        margin: 0;
+        padding-left: 0.5;
+    }
 }
 
 /*md文章 正文*/
