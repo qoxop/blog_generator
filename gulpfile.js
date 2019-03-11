@@ -9,6 +9,7 @@ const static = require('koa-static')
 const websockify = require('koa-websocket')
 const opn = require('opn')
 const {spawn} = require('child_process')
+const less = require('gulp-less');
 
 let reloadHanders = [];
 function runDevServe() {
@@ -71,6 +72,11 @@ gulp.task('dev', gulp.series(setDev, 'build', function (cb) {
     gulp.watch('./assets/**/*.*', gulp.series(
         function() {
             return gulp.src('./assets/**/*.*').pipe(gulp.dest('./site/assets'))
+        },
+        function() {
+            return gulp.src('./assets/**/*.less')
+            .pipe(less())
+            .pipe(gulp.dest('./site/assets'))
         },
         reload,
     ))

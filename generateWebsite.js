@@ -4,6 +4,7 @@ const {cloneDeep, uniq} = require('lodash')
 const {menus} = require('./meta.js')
 const {join, dirname} = require('path')
 const {tagsPage, categoryPage, articleListPage} = require('./src/tpl/index')
+const less = require('gulp-less');
 
 const DataController = (function() {
     const data = {
@@ -111,10 +112,19 @@ function generateTags(cb) {
     cb()
 }
 function moveAsset() {
-    return gulp.src('./assets/**/*.*')
+    return gulp.src(['./assets/**/*.*', '!./assets/less/**/*.*'])
     .pipe(gulp.dest('./site/assets'))
 }
-const generateWebsite = gulp.parallel(generateArticleList, generateCategorys, generateTags, moveAsset)
+function moveAsset() {
+    return gulp.src(['./assets/**/*.*', '!./assets/**/*.less'])
+    .pipe(gulp.dest('./site/assets'))
+}
+function parseLess() {
+    return gulp.src('./assets/**/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('./site/assets'))
+}
+const generateWebsite = gulp.parallel(generateArticleList, generateCategorys, generateTags, moveAsset, parseLess)
 
 module.exports = {
     generateWebsite,

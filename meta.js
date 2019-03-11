@@ -5,7 +5,7 @@ const menus = [
     {text: '链接', url: '/link.html', className: '', name: 'link'},
     {text: '关于我', url: '/about.html', className: '', name: 'about'}
 ]
-const notePath = 'E:/notes';
+const notePath = 'C:/work/myNotes';
 const githubPagePath = 'C:/work/qoxop.github.io'
 module.exports = {
     menus, notePath, githubPagePath

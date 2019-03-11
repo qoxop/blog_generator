@@ -18,7 +18,7 @@ const getTpl = (pageType) => {
 }
 
 const wrapperTpl = () => fs.readFileSync(absPath('./wrapper.art'), {encoding: 'utf8'});
-const wrapperAsideTpl = () => fs.readFileSync(absPath('./wrapperAside.art'), {encoding: 'utf8'});
+const wrapperAsideTpl = () => fs.readFileSync(absPath('./wrapperWithProfile.art'), {encoding: 'utf8'});
 
 
 const aboutPage = (data = {}) => getTpl('about').wrapper(wrapperAsideTpl()).wrapper(wrapperTpl()).render(data);

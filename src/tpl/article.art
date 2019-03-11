@@ -1,22 +1,23 @@
-<article class="content_box">
-    <div class="article md_html_article" id="left_content">
-        <h1>
-            {{title}}
-        </h1>
-        <div class="update_time">
-            <span>
-                更新时间：{{modifyAt}}
-            </span>
-        </div>
-        <div id="write" class="md_essay">
-            {{@ html }}
-        </div>
-        <div class="md_essay_tags">
-            {{each tags}}
-                <div>
-                    <span>{{$value}}</span>
-                </div>
-            {{/each}}
-        </div>
+<article class="left markdown-it" id="paper">
+    <h1>
+        {{title}}
+    </h1>
+    <div class="update_time">
+        <span>
+            更新时间：{{modifyAt}}
+        </span>
+    </div>
+    <div id="write" class="md-essay">
+        {{@ html }}
+    </div>
+    <div class="md_essay_tags">
+        {{each tags}}
+            <div>
+                <span>{{$value}}</span>
+            </div>
+        {{/each}}
     </div>
 </article>
+<aside class='right'>
+    
+</aside>
