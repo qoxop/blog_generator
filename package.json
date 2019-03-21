@@ -17,6 +17,7 @@
     "gulp-minify-css": "^1.2.4",
     "gulp-minify-html": "^1.0.6",
     "gulp-uglify": "^3.0.2",
+    "jsdom": "^14.0.0",
     "koa": "^2.7.0",
     "koa-route": "^3.2.0",
     "koa-static": "^5.0.0",

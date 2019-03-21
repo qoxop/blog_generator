@@ -3,11 +3,9 @@ const through = require('through2');
 const markdownIt = require('markdown-it')('commonmark')
 const posixPath = require('path').posix;
 const dayjs = require('dayjs')
-const myEmitter = require('./myEmitter');
-
-const renderArticlePage = (data) => {
-    return data.toString;
-}
+const myEmitter = require('../myEmitter');
+const {INPUT_PATH, OUTPUT_PATH} = require('../meta')
+const renderArticlePage = require('../renderers/articlePage')
 
 let parser = markdownIt
     .use(require('markdown-it-task-lists'), {enable: true, label: true, labelAfter: true})
@@ -132,19 +130,20 @@ const generateArticlePage = function() {
     })
 }
 
-function parseMarkdown() {
-    return gulp.src([`${notePath}/**/*.*`, `!${notePath}/ignore/**/*.*`])
+function createArticlePage() {
+    myEmitter.emit(myEmitter.TYPE.BEGIN_CREATE_ARTICLE_PAGE);
+    return gulp.src([`${INPUT_PATH}/**/*.*`, `!${INPUT_PATH}/ignore/**/*.*`])
     .pipe(parserPlugin(amendUrlFile))
     .pipe(parserPlugin(addTags))
     .pipe(parserPlugin(addKeywords))
     .pipe(parserPlugin(addUpdateTime))
     .pipe(parserPlugin(finalParse))
     .pipe(generateArticlePage())
-    .pipe(gulp.dest('./site'))
+    .pipe(gulp.dest(OUTPUT_PATH));
 };
 
 module.exports = {
-    parseMarkdown
+    createArticlePage
 }
 
 
