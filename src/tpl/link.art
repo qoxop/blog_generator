@@ -1,5 +1,0 @@
-<article class="about_me">
-    <div class="md_essay">
-        {{@ html }}
-    </div>
-</article>
