@@ -174,10 +174,10 @@ function createArticleList(list, positionInfo) {
     const years = [];
     list.forEach(item => {
         const li = document.createElement('li');
-        const year = item.date.substr(0, 4);
+        const year = item.updateTime.substr(0, 4);
         const tpl = `
             <div class="time">
-                <time>${item.date}</time>
+                <time>${item.updateTime}</time>
             </div>
             <div class="article-info">
                 <div class="article-title">
@@ -195,7 +195,7 @@ function createArticleList(list, positionInfo) {
         }
         if (positionInfo) {
             setTimeout(() => {
-                const key = item.date.substr(0, 7).replace('-', '年') + '月';
+                const key = item.updateTime.substr(0, 7).replace('-', '年') + '月';
                 if(!positionInfo[key]) {
                     positionInfo[key] = li.getBoundingClientRect().y - document.body.getBoundingClientRect().y;
                 }
@@ -259,13 +259,13 @@ function DataController() {
     this.load = function (cb) {
         if (!this.loading && this.hasMore) {
             this.loading = true;
-            request.get('http://yapi.demo.qunar.com/mock/58629/article-list', {page_index: ++this.pageIndex}, (res, fail) => {
+            request.get(`/json/page_${++this.pageIndex}.json`, (res, fail) => {
                 if (fail || (res && res.data && !res.data.length)) {
                     // 无数据
                     this.hasMore = false;
                 } else {
                     this.data = this.data.concat(res.data)
-                    const years =  Object.keys(res.data.map(item => item.date.substr(0, 4)).reduce((yObj, year) => Object.assign(yObj, {[year]: 1}), {})).sort();
+                    const years =  Object.keys(res.data.map(item => item.updateTime.substr(0, 4)).reduce((yObj, year) => Object.assign(yObj, {[year]: 1}), {})).sort();
                     myEvent.emit(TIME_EVENT.YEAR_ADD, years)
 
                 }
@@ -281,7 +281,7 @@ function DataController() {
         this.load(cb)
     }
     this.fetchAll = function(cb) {
-        request.get('http://yapi.demo.qunar.com/mock/58629/tags-list', (res, fail) => {
+        request.get('/json/all.json', (res, fail) => {
             if (fail || (res && res.data && !res.data.length)) {
                 // 无数据
                 this.hasMore = false;
@@ -327,12 +327,12 @@ function renderHomePage() {
                 myEvent.clearListener(BODY_SCROLL_EVENT.PRELOAD);
             } else {
                 // apendChild
-                const ul = document.querySelector('#home-article-list>ul');
+                const ul = document.querySelector('#home_article_list>ul');
                 if (ul) {
                     ul.appendChild(createArticleList(data, PositionInfo));
                     setTimeout(checking, 20);
                 } else {
-                    console.error('#home-article-list>ul not exit');
+                    console.error('#home_article_list>ul not exit');
                 }
             }
         })
@@ -342,7 +342,7 @@ function renderHomePage() {
 
 function renderYearBar() {
     const yearDomMap = {};
-    const timelineDom = document.getElementById('yearTimeline');
+    const timelineDom = document.getElementById('yearsbar');
     myEvent.on(TIME_EVENT.YEAR_ADD, function(years) {
         const liFragment = document.createDocumentFragment()
         years.forEach(y => {
@@ -409,7 +409,7 @@ function createTagPage(listGroupByTag, PositionInfo) {
             const dd = document.createElement('dd');
             const ul = document.createElement('ul');
             ul.innerHTML = listGroupByTag[tagName].reduce((htmlStr, cur) => {
-                itemStr = `<li><a class="iconfont" href="${cur.url}">${cur.title}</a></li>`
+                const itemStr = `<li><a class="iconfont" href="${cur.url}">${cur.title}</a></li>`
                 return htmlStr + itemStr;
             }, '')
             dd.appendChild(ul)
@@ -421,8 +421,8 @@ function createTagPage(listGroupByTag, PositionInfo) {
             }, 0)
         }
     }
-    document.getElementById('tags-list').appendChild(TagsListGroup);
-    document.getElementById('tag-article-list').appendChild(ListGroup);
+    document.getElementById('tags_list').appendChild(TagsListGroup);
+    document.getElementById('tag_article_list').appendChild(ListGroup);
 }
 
 function renderTagsPage() {
@@ -430,15 +430,17 @@ function renderTagsPage() {
     displayScrollTips(PositionInfo, 30);
     const dataCtrl = new DataController();
     dataCtrl.fetchAll((data) => {
-        const listGroupByTag = data.reduce((groupByTag, cur) => {
-            cur.tags.forEach(tag => {
-                if(!groupByTag[tag]) {
-                    groupByTag[tag] = []
-                }
-                groupByTag[tag].push(cur)
-            })
-            return groupByTag;
-        }, {})
+        const listGroupByTag = data.reduce((obj, cur) => {
+            if (cur.tags && cur.tags.length > 0) {
+                cur.tags.forEach(tag => {
+                    if (!obj[tag]) obj[tag] = [];
+                    obj[tag].push(cur)
+                })
+            } else {
+                obj['未分类'].push(cur);
+            }
+            return obj;
+        }, {'未分类': []})
         createTagPage(listGroupByTag, PositionInfo);
         setTimeout(() => {
             const tagTitle = document.getElementById(window.location.hash.replace('#', ''))

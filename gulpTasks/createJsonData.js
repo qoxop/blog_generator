@@ -36,7 +36,7 @@ function createJsonData(cb) {
         return obj;
     }, {noTag: []})
     const tagJson = JSON.stringify({data: groupByTags, total: store.length});
-    createFile(OUTPUT_PATH, './json/tags.json', tagJson);
+    createFile(join(OUTPUT_PATH, './json/tags.json'), tagJson);
     cb()
 }
 

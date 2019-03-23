@@ -4,8 +4,8 @@ const markdownIt = require('markdown-it')('commonmark')
 const posixPath = require('path').posix;
 const dayjs = require('dayjs')
 const myEmitter = require('../myEmitter');
-const {INPUT_PATH, OUTPUT_PATH} = require('../meta')
-const renderArticlePage = require('../renderers/articlePage')
+const {INPUT_PATH, OUTPUT_PATH, AUTHOR} = require('../meta')
+const {article} = require('../renderers/index')
 
 let parser = markdownIt
     .use(require('markdown-it-task-lists'), {enable: true, label: true, labelAfter: true})
@@ -77,6 +77,21 @@ function addUpdateTime(vinylFile) {
     })
     return {contents: text, updateTime}
 }
+/**
+ * 在流对象上添加author属性
+ * @param {*} vinylFile 
+ */
+function addAuthor(vinylFile) {
+    const {contents} = vinylFile;
+    let author = AUTHOR;
+    const text = contents.toString().replace(/\n@author\:([^\n]*)/g, (_, $1) => {
+        if ($1) {
+            author = $1;
+        }
+        return ""
+    })
+    return {contents: text, author}
+}
 
 /**
  * 结束流对象的修改，将文件名改为 .html
@@ -92,7 +107,7 @@ function finalParse(vinylFile) {
 
 /**
  * gulp插件
- * @param {*} hanler 
+ * @param {*} handler 
  */
 function parserPlugin(hanler) {
     return through.obj(function(vinylFile , enc, cb) {
@@ -111,7 +126,7 @@ function parserPlugin(hanler) {
 const generateArticlePage = function() {
     return through.obj(function(vinylFile , enc, cb) {
         if (vinylFile.extname === '.html') {
-            const extraKeys = ['url', 'tags', 'keywords', 'updateTime'];
+            const extraKeys = ['url', 'tags', 'keywords', 'updateTime', 'author'];
             const articleInfo = {
                 html: vinylFile.contents.toString(),
                 title: vinylFile.stem,
@@ -123,7 +138,7 @@ const generateArticlePage = function() {
                 articleInfo[key] = vinylFile[key];
             })
             myEmitter.emit(myEmitter.TYPE.AFTER_PARSE_MD_TO_HTML, articleInfo);
-            vinylFile.contents = Buffer.from(renderArticlePage(articleInfo));
+            vinylFile.contents = Buffer.from(article(articleInfo));
         }
         this.push(vinylFile);
         cb()
@@ -137,14 +152,10 @@ function createArticlePage() {
     .pipe(parserPlugin(addTags))
     .pipe(parserPlugin(addKeywords))
     .pipe(parserPlugin(addUpdateTime))
+    .pipe(parserPlugin(addAuthor))
     .pipe(parserPlugin(finalParse))
     .pipe(generateArticlePage())
     .pipe(gulp.dest(OUTPUT_PATH));
 };
 
-module.exports = {
-    createArticlePage
-}
-
-
-
+module.exports = createArticlePage

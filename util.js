@@ -1,7 +1,8 @@
 const {writeFileSync, mkdirSync, accessSync} = require('fs')
+const path = require('path')
 
 function createFile(mypath, data) {
-    const dir = dirname(mypath)
+    const dir = path.dirname(mypath)
     try {
         accessSync(dir)
     } catch(e) {
