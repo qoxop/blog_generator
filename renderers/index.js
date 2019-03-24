@@ -1,6 +1,8 @@
 const fs = require('fs')
 const path = require('path');
 const { JSDOM } = require("jsdom");
+const parser = require('markdown-it')('commonmark')
+const {INPUT_PATH} = require('../meta')
 
 function home(document) {
     // 添加 ul
@@ -19,7 +21,7 @@ function article(document, data) {
     // meta
     document.querySelector('meta[name="author"]').setAttribute('content', data.author);
     document.querySelector('meta[name="keywords"]').setAttribute('content', data.keywords.join(';'))
-    document.querySelector('title').innerText = data.title;
+    document.querySelector('title').innerHTML = data.title;
 
     // find article
     const article = document.querySelector('main>article');
@@ -27,14 +29,14 @@ function article(document, data) {
 
     // h1
     const h1 = document.createElement('h1');
-    h1.innerText = data.title;
+    h1.innerHTML = data.title;
 
     // section.article_info
     const articleInfo = document.createElement('section');
     articleInfo.setAttribute('class', 'article_info');
     articleInfo.innerHTML = `
         <span class="author">author: ${data.author}</span>
-        <span class="update_time">updateAt: ${data.updateTime}</span>
+        <span class="update_time">update at: ${data.updateTime}</span>
     `
     // div.from_markdown
     const fromMarkdown = document.createElement('div')
@@ -44,7 +46,7 @@ function article(document, data) {
     // section.tags_bar
     const tagsBar = document.createElement('section');
     tagsBar.setAttribute('class', 'tags_bar');
-    tagsBar.innerHTML = data.tags.map(tag => `<span>${tag}</span>`).join('');
+    tagsBar.innerHTML = data.tags.map(tag => `<a href="/tags.html#${tag}">${tag}</a>`).join('');
 
     // apendChild
     article.appendChild(h1)
@@ -52,6 +54,15 @@ function article(document, data) {
     article.appendChild(fromMarkdown)
     article.appendChild(tagsBar)
     document.querySelector('meta[name="description"]').setAttribute('content', (document.querySelector('p') || {innerHTML: ''}).innerHTML);
+
+    //highlight.js
+    // const highLight = document.createElement('script');
+    // highLight.setAttribute('src', '/assets/script/highlight.pack.js');
+    // document.body.appendChild(highLight);
+    const codeStyle = document.createElement('link');
+    codeStyle.setAttribute("rel", "stylesheet");
+    codeStyle.setAttribute("href", "/assets/code_styles/solarized-light.css")
+    document.querySelector('head').appendChild(codeStyle);
 }
 
 function tags(document) {
@@ -67,7 +78,11 @@ function tags(document) {
         </section>
     `
 }
-function about(document) {}
+function about(document) {
+    const article = document.querySelector('main>article');
+    article.setAttribute('id', 'article_about');
+    article.innerHTML = parser.render(fs.readFileSync(path.join(INPUT_PATH, './ignore/about.md'), {encoding: 'utf8'}))
+}
 
 const handers = {
     home: { name: 'home', fn: home},
@@ -82,12 +97,17 @@ function render(handler, data) {
     const {document} = dom.window;
     const script = document.createElement('script');
     script.setAttribute('src', `/assets/script/${handler.name}.js`);
+    if (process.env.dev) {
+        const script_r = document.createElement('script');
+        script_r.setAttribute('src', "/assets/script/hot_reload.js");
+        document.body.appendChild(script_r);
+    }
     document.body.appendChild(script);
     handler.fn(document, data)
-    return dom.serialize().replace(/[\s, \n]+/g, ' ');
+    return dom.serialize();
 }
 module.exports = {
-    about: (data) => render(handers.about, data),
+    about: data => render(handers.about, data),
     article: data => render(handers.article, data),
     home: data => render(handers.home, data),
     tags: data => render(handers.tags, data)

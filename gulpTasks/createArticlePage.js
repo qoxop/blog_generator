@@ -129,7 +129,7 @@ const generateArticlePage = function() {
             const extraKeys = ['url', 'tags', 'keywords', 'updateTime', 'author'];
             const articleInfo = {
                 html: vinylFile.contents.toString(),
-                title: vinylFile.stem,
+                title: vinylFile.stem.toString(),
             }
             extraKeys.forEach(key => {
                 if (vinylFile[key] === undefined) {

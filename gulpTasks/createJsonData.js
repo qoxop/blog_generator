@@ -6,7 +6,7 @@ const PAGE_SIZE = 10;
 
 function createJsonData(cb) {
     const store = clearStore()
-                    .sort((a1, a2) => (a1.updateTime > a2.updateTime ? 1 : -1))
+                    .sort((a1, a2) => (a1.updateTime < a2.updateTime ? 1 : -1))
                     .map(item => ({...item, html: undefined}));
     const allJson = JSON.stringify({data: store, total: store.length});
     createFile(join(OUTPUT_PATH, './json/all.json'), allJson);

@@ -360,7 +360,7 @@ function renderYearBar() {
     myEvent.on(TIME_EVENT.SCROLL_TIP_CHANGE, function(tip) {
         const curYear = tip.substr(0, 4)
         for (let year in yearDomMap) {
-            if(year <= curYear) {
+            if(year >= curYear) {
                 yearDomMap[year].setAttribute('class', 'actived');
             } else {
                 yearDomMap[year].setAttribute('class', 'unactived');

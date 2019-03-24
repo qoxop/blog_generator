@@ -10,6 +10,7 @@ const handleAssets = require('./gulpTasks/handleAssets')
 const createArticlePage = require('./gulpTasks/createArticlePage')
 const createJsonData = require('./gulpTasks/createJsonData');
 const createPage = require('./gulpTasks/createOtherPage')
+const {INPUT_PATH, REPO_PATH} = require('./meta')
 
 let reloadHanders = [];
 function runDevServe() {
@@ -61,51 +62,44 @@ gulp.task('build', gulp.parallel(
     handleAssets,
     gulp.series(createArticlePage, createJsonData, createPage),
 ))
-
-// // 开发
-// gulp.task('dev', gulp.series(setDev, 'build', function (cb) {
-//     runDevServe();
-//     gulp.watch('./assets/**/*.*', gulp.series(
-//         function() {
-//             return gulp.src('./assets/**/*.*').pipe(gulp.dest('./site/assets'))
-//         },
-//         function() {
-//             return gulp.src('./assets/**/*.less')
-//             .pipe(less())
-//             .pipe(gulp.dest('./site/assets'))
-//         },
-//         reload,
-//     ))
-//     gulp.watch('./src/**/*.*', gulp.series(
-//         'build',
-//         reload
-//     ))
-//     cb();
-// }))
-
-// // 写作
-// gulp.task('writting', gulp.series(setDev, 'build', function (cb) {
-//     runDevServe();
-//     gulp.watch(`${notePath}/**/*.*`, gulp.series(
-//         'build',
-//         reload
-//     ))
-//     cb();
-// }))
-
-// // 发布到GitHubPage
-// gulp.task('publish', gulp.series(
-//     'build',
-//     () => gulp.src('./site/**/*.*').pipe(gulp.dest(githubPagePath)),
-//     (cb) => {
-//         const commit = spawn('git',['commit', '-am', '\'articlesChange\''], {cwd: githubPagePath, windowsHide: true})
-//         console.log(`run command: git commmit -am 'articlesChange'`)
-//         commit.on('data', console.log)
-//         commit.on('close', code => {
-//             console.log(code)
-//             const push = spawn('git', ['push'], {cwd: githubPagePath, windowsHide: true})
-//             push.on('data', console.log)
-//             push.on('close', cb)
-//         })
-//     }
-// ))
+gulp.task('dev', gulp.series(
+    setDev,
+    'build',
+    function(cb) {
+        gulp.watch('./src/assets/**/*.*', gulp.series(handleAssets, reload))
+        cb()
+    },
+    function(cb) {
+        gulp.watch(['./src/*.html'], gulp.series(createArticlePage, createPage, reload))
+        cb()
+    },
+    function(cb) {
+        gulp.watch(INPUT_PATH, gulp.series(createArticlePage, createJsonData, createPage, reload))
+        cb()
+    },
+    function (cb) {
+        runDevServe();
+        cb()
+    }
+))
+// 发布到GitHubPage
+gulp.task('publish', gulp.series(
+    'build',
+    () => gulp.src('./site/**/*.*').pipe(gulp.dest(REPO_PATH)),
+    (cb) => {
+        const add = spawn('git',['add', '-A'], {cwd: REPO_PATH, windowsHide: true})
+        add.on('data', console.log)
+        add.on('close', () => {
+            const commit = spawn('git',['commit', '-m', '\'articlesChange\''], {cwd: REPO_PATH, windowsHide: true})
+            console.log(`run command: git commmit -am 'articlesChange'`)
+            commit.on('data', console.log)
+            commit.on('close', code => {
+                console.log(code)
+                const push = spawn('git', ['push'], {cwd: REPO_PATH, windowsHide: true})
+                push.on('data', console.log)
+                push.on('close', cb)
+            })
+        })
+        
+    }
+))
