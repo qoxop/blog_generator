@@ -1,0 +1,79 @@
+[
+    {
+        "name": "红烧鱼A",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    },
+    {
+        "name": "红烧鱼B",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    },
+    {
+        "name": "红烧鱼C",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    },
+    {
+        "name": "红烧鱼D",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    },
+    {
+        "name": "红烧鱼E",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    },
+    {
+        "name": "红烧鱼F",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    },
+    {
+        "name": "红烧鱼G",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    },
+    {
+        "name": "红烧鱼H",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    },
+    {
+        "name": "红烧鱼I",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    },
+    {
+        "name": "红烧鱼J",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    },
+    {
+        "name": "红烧鱼K",
+        "picture": "/images/红烧鱼.jpg",
+        "price": 100,
+        "decription": "红烧鱼好吃好吃好吃好吃好好吃！",
+        "discount": 0.8
+    }
+]

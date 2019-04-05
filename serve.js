@@ -17,13 +17,6 @@ app.use( ctx => {
   ctx.body = '<h1>404</h1>'
 })
 
-// // websocket
-// app.ws.use(route.all('/hot_reload', (ctx) => {
-//   ctx.websocket.on('message', function() {
-//     reloadHanders.push(() => ctx.websocket.send('reload page'))
-//   });
-// }));
-
 app.listen(3000, () => {
   console.log('server is starting at port 3000')
 })

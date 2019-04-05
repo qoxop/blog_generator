@@ -85,6 +85,13 @@ gulp.task('dev', gulp.series(
 // 发布到GitHubPage
 gulp.task('publish', gulp.series(
     'build',
+    // (cb) => {
+    //     const rm = spawn('rm', ['-rf', 'json'], {cwd: REPO_PATH, windowsHide: true})
+    //     rm.on('data', console.log)
+    //     rm.on('close', () => {
+    //         cb();
+    //     })
+    // },
     () => gulp.src('./site/**/*.*').pipe(gulp.dest(REPO_PATH)),
     (cb) => {
         const add = spawn('git',['add', '-A'], {cwd: REPO_PATH, windowsHide: true})
