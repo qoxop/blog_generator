@@ -2861,6 +2861,11 @@ lodash@^4.17.10, lodash@^4.17.11:
   version "4.17.11"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
+lodash@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
+
 longest@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/longest/download/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
@@ -2917,6 +2922,18 @@ markdown-it-highlightjs@^3.0.0:
   dependencies:
     highlight.js "^9.9.0"
     lodash.flow "^3.1.0"
+
+markdown-it-multimd-table@^3.2.0-rc.1:
+  version "3.2.0-rc.1"
+  resolved "https://registry.npm.taobao.org/markdown-it-multimd-table/download/markdown-it-multimd-table-3.2.0-rc.1.tgz#9cd9647fe0b5161d9ef4e30ae309885fce2e8aec"
+  integrity sha1-nNlkf+C1Fh2e9OMK4wmIX84uiuw=
+  dependencies:
+    markdown-it "^8.4.2"
+
+markdown-it-synapse-table@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npm.taobao.org/markdown-it-synapse-table/download/markdown-it-synapse-table-1.0.6.tgz#5e14383257a6f6495d6c097388911548fe2155fb"
+  integrity sha1-XhQ4Mlem9kldbAlziJEVSP4hVfs=
 
 markdown-it-table-of-contents@^0.4.3:
   version "0.4.3"

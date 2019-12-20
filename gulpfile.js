@@ -4,7 +4,6 @@ const path = require('path')
 const route = require('koa-route')
 const static = require('koa-static')
 const websockify = require('koa-websocket')
-const opn = require('opn')
 const {spawn} = require('child_process')
 const handleAssets = require('./gulpTasks/handleAssets')
 const createArticlePage = require('./gulpTasks/createArticlePage')
@@ -32,8 +31,8 @@ function runDevServe() {
     }));
     // 监听
     app.listen(3000, () => {
-        opn('http://localhost:3000', { app: ['chrome'] });
-        console.log('server is starting at port 3000')
+        // opn('http://localhost', { app: ['chrome'] });
+        console.log('server is starting at http://localhost:3000')
     })
 }
 
@@ -85,13 +84,6 @@ gulp.task('dev', gulp.series(
 // 发布到GitHubPage
 gulp.task('publish', gulp.series(
     'build',
-    // (cb) => {
-    //     const rm = spawn('rm', ['-rf', 'json'], {cwd: REPO_PATH, windowsHide: true})
-    //     rm.on('data', console.log)
-    //     rm.on('close', () => {
-    //         cb();
-    //     })
-    // },
     () => gulp.src('./site/**/*.*').pipe(gulp.dest(REPO_PATH)),
     (cb) => {
         const add = spawn('git',['add', '-A'], {cwd: REPO_PATH, windowsHide: true})
