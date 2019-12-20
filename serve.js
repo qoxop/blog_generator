@@ -1,6 +1,5 @@
 const Koa = require('koa')
 const path = require('path')
-const route = require('koa-route')
 const static = require('koa-static')
 const websockify = require('koa-websocket')
 
@@ -17,6 +16,6 @@ app.use( ctx => {
   ctx.body = '<h1>404</h1>'
 })
 
-app.listen(3000, () => {
-  console.log('server is starting at port 3000')
+app.listen(80, () => {
+  console.log('server is starting at port 80')
 })
