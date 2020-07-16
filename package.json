@@ -27,7 +27,7 @@
     "koa-static-cache": "^5.1.2",
     "koa-websocket": "^5.0.1",
     "less": "^3.9.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.0.2",
     "markdown-it-highlightjs": "^3.0.0",
