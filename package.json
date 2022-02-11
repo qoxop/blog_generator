@@ -30,7 +30,7 @@
     "lodash": "^4.17.15",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.0.2",
-    "markdown-it-highlightjs": "^3.0.0",
+    "markdown-it-highlightjs": "^3.3.1",
     "markdown-it-multimd-table": "^3.2.0-rc.1",
     "markdown-it-synapse-table": "^1.0.6",
     "markdown-it-table-of-contents": "^0.4.3",
